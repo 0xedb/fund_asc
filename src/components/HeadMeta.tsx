@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {Helmet} from 'react-helmet';
+import 'antd/dist/antd.css'
 
-function HeadMeta() {
+interface Props {
+    children? : ReactNode
+}
+
+function HeadMeta({children}: Props) {
     return (
-        <Helmet>
-            <title>Fund ASC</title>
-            <link rel='icon' href='../images/favicon.png' type='image/png' />
+        <Helmet> 
+            <link rel='icon' href='/images/favicon.png' type='image/png' /> 
+            <link rel='stylesheet' href='/css/app.css' />
+            {children}
         </Helmet>
     )
 }
-
+ 
 export default HeadMeta
