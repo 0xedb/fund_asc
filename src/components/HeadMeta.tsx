@@ -10,7 +10,6 @@ function HeadMeta({children}: Props) {
     return (
         <Helmet> 
             <link rel='icon' href='/images/favicon.png' type='image/png' /> 
-            <link rel='stylesheet' href='/css/app.css' />
             {children}
         </Helmet>
     )

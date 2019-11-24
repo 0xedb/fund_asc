@@ -11,18 +11,7 @@ interface Values {
 interface FormError extends Values {}
 
 function Index() {
-  const [sendMail, setSendMail] = useState(false);
-
-  useFirebase(
-    firebase => {
-      if (sendMail) {
-        sendEmail({firebase, email: formik.values.email}).then(() => {
-          message.success('email sent');
-        });
-      }
-    },
-    [sendMail]
-  );
+  const [sendMail, setSendMail] = useState(0);
 
   const errors: FormError = {};
   const validate = (values: Values) => {
@@ -34,16 +23,36 @@ function Index() {
 
     return errors;
   };
+
+  const initialValues = {
+    email: '',
+  };
+
   const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
+    initialValues,
     onSubmit: values => {
       console.log('Submitted: \t :', values);
-      setSendMail(true);
+      setSendMail(prev => ++prev);
     },
     validate,
   });
+
+  useFirebase(
+    firebase => {
+      if (sendMail) {
+        sendEmail({firebase, email: formik.values.email}).then(() => {
+          message.destroy();
+          message.success({
+            content: 'email sent',
+            duration: 5,
+            key: sendMail,
+          });
+          formik.resetForm();
+        });
+      }
+    },
+    [sendMail]
+  );
 
   const send = (
     <Icon
