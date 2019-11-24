@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(235, 83, 56);;
+}
+
+.index {
+    height: 100vh;
+}
+
+#sign-in {
+    width: 90%;
+    min-width: 300px;
+    padding: 20px 10px;
+    border: 1px solid black;
+}

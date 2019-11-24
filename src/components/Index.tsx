@@ -63,10 +63,8 @@ function Index() {
     />
   );
 
-  const emailIcon = <Icon type="mail" />;
-
   return (
-    <div>
+    <div id="sign-in" className="">
       <Form>
         <Form.Item>
           <Input

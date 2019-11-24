@@ -1,0 +1,27 @@
+@media(min-width: 750px) {
+    body {
+        background-color: rgb(64, 118, 189);
+    }
+
+    #sign-in {
+        width: 100%;
+        padding: 40px 20px;
+        max-width: 560px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

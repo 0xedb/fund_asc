@@ -1,3 +1,6 @@
+@import url('./mobile.css');
+@import url('./desktop.css');
+
 *,
 ::before,
 ::after {
@@ -10,5 +13,11 @@ html {
 
 body {
     height: 100vh;
-    background-color: rgb(235, 117, 117);;
+}
+
+.centered {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
 }

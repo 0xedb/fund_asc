@@ -12,8 +12,8 @@ const sendEmail = async ({email, firebase}: EmailProps) => {
   firebase
     .auth()
     .sendSignInLinkToEmail(email, actionCodeSettings)
-    .then(() => {
-      // save email in localStorage to use later
+    .then(() => { 
+      window.localStorage.setItem('fund_user', btoa(email));
       console.log('email sent');
     })
     .catch(err => console.log('Error occured: ', err));

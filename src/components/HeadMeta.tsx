@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
 import {Helmet} from 'react-helmet';
-import 'antd/dist/antd.css'
 
 interface Props {
     children? : ReactNode

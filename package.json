@@ -23,6 +23,7 @@
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
     "@types/react-helmet": "^5.0.14",
+    "@types/react-router-dom": "^5.1.2",
     "dotenv": "^8.2.0"
   },
   "scripts": {
