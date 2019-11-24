@@ -1,5 +1,3 @@
-import {useFirebase} from 'gatsby-plugin-firebase';
-
 interface EmailProps {
   email: string;
   firebase: Function;
