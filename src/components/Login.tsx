@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useFirebase} from 'gatsby-plugin-firebase';
 import LoginForm from './LoginForm';
 import {Params} from './LoginForm';
+import {message} from 'antd';
 
 enum PageNavigationType {
     RENDER,
@@ -10,12 +11,22 @@ enum PageNavigationType {
     EMAIL_EXTERNAL
 }
 
-const onSubmit = (params: Params) => {
-    
-}
 
 function Login() {
   const [login, setLogin] = useState(PageNavigationType.RENDER);
+
+  const onSubmit = (params: Params) => { 
+    params.firebase.auth().signInWithEmailLink(params.email, window.location.href).
+    then(result => {
+        window.localStorage.removeItem(params.email);
+        console.log(result);
+        window.location.replace('/forms')
+    })
+    .catch(err => {
+        console.log(err)
+    })
+    
+}
 
   useFirebase(firebase => {
     if (firebase.auth().isSignInWithEmailLink(window.location.href)) { 
@@ -28,29 +39,27 @@ function Login() {
     } else  setLogin(PageNavigationType.DIRECT)
   }, []);
 
+  const showMessage = () => {
+      message.destroy();
+    message.warn({content: "enter email to login", duration: 5})
+  }
 
-  const toBeRendered = () => {
-      console.log('TYPE', login)
+
+  const toBeRendered = () => { 
       switch(login) {
           case PageNavigationType.DIRECT:
               return <>{window.location.replace('/')}</>;
         case PageNavigationType.EMAIL: 
         return <>{window.location.replace('/forms')}</>
         case PageNavigationType.EMAIL_EXTERNAL:
-            return <div><LoginForm {...onSubmit} /></div>;
+            return <div><LoginForm onSubmit={onSubmit} />{showMessage()}</div>;
         case PageNavigationType.RENDER:
             return <></>;
         default: 
         return <>{window.location.replace('/')}</>;
       }
   }
-  
-
-  const toRender = login
-    ? <div id="sign-in" className="">
-    {window.location.replace('/forms')}    
-      </div>
-    : <div><LoginForm {...onSubmit} /></div>;
+   
 
   return ( 
       <>{toBeRendered()}</>
