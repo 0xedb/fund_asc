@@ -23,7 +23,8 @@ function Login() {
         window.location.replace('/forms')
     })
     .catch(err => {
-        console.log(err)
+        console.log('Error!', err)
+        message.error({content: `${err}`, duration: 5})
     })
     
 }
