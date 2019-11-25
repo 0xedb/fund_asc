@@ -4,7 +4,7 @@ interface EmailProps {
 }
 
 const actionCodeSettings = {
-  url: 'http://localhost:8000/',
+  url: 'http://localhost:8000/login',
   handleCodeInApp: true,
 };
 
